@@ -42,6 +42,28 @@ A solver that is thousands of times faster "across all problems" will show it on
 
 Results are welcome as an issue or a pull request, from anyone, for any solver. We will rerun what we can and publish the outcome whichever way it goes, including if it shows we were wrong to be cautious.
 
+## The other claims in the thread
+
+The post makes several claims. This repository tests one of them. For fairness, here is where each stands as far as we can tell.
+
+| Claim | Can it be checked? | Where it stands |
+|---|---|---|
+| Thousands of times faster "across all problems" | Yes, on neutral benchmarks | The one this challenge is about. Not yet verifiable: no code or instances are public. |
+| The gap grows as problems get larger | Yes | We see the same with known shortcuts on structured families: the shortcut is polynomial and the general solver is not. So this is expected whether or not the method is new. |
+| It solves "a large subset of the NP-complete problem space in polynomial time" | Partly | True of every shortcut used here, each for its own family. The open question is how large the subset is. |
+| Speedups from 3.7x on Hamiltonian-cycle problems from six published families | Yes | The most checkable claim, and a believable size. Families chosen by other people are a fairer test than a home-made table. Our own graph method won on unsolvable cases and lost on one solvable case, so we have little to add here. We read only the opening of that post. |
+| Built in under five minutes and about twenty prompts | No | Only the author can know. It is consistent with combining existing methods. |
+
+We have left out the post's remarks comparing AI models. They are one person's experience on one task and nothing here can test them.
+
+## Taking up the offer
+
+The thread also says: "If anyone has a hard SAT problem they want to test this with, please send me the link and I'll hopefully be able to send you back the solution (and proof, for UNSAT)."
+
+That is a generous offer, and it is exactly what Tier 3 asks for. So here is our request, made in that spirit: the 25 instances written by `shortcuts/tier3.py`, with checksums in `results/MANIFEST-tier3.sha256`. A satisfying assignment for each satisfiable one, and a DRAT or LRAT proof for each unsatisfiable one, with the time taken. We will check every certificate and publish the result here.
+
+We have not yet run these instances ourselves. A Kissat baseline on the same instances will be added to `results/` so that the times can be compared.
+
 ## Reproduce our numbers
 
 You need Python 3, a C compiler for `python-sat`, and `kissat` on your path.

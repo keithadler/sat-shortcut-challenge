@@ -62,7 +62,7 @@ The thread also says: "If anyone has a hard SAT problem they want to test this w
 
 That is a generous offer, and it is exactly what Tier 3 asks for. So here is our request, made in that spirit: the 25 instances written by `shortcuts/tier3.py`, with checksums in `results/MANIFEST-tier3.sha256`. A satisfying assignment for each satisfiable one, and a DRAT or LRAT proof for each unsatisfiable one, with the time taken. We will check every certificate and publish the result here.
 
-We have not yet run these instances ourselves. A Kissat baseline on the same instances will be added to `results/` so that the times can be compared.
+A Kissat baseline on the same instances (`shortcuts/tier3_baseline.py`, 300 seconds per instance) is in `results/tier3-kissat.tsv`, so that the times can be compared. It is being filled in as the run completes.
 
 ## Reproduce our numbers
 

@@ -64,6 +64,8 @@ That is a generous offer, and it is exactly what Tier 3 asks for. So here is our
 
 **Baseline.** Kissat 4.0.4 with a 300-second limit solved 17 of the 25: 15 satisfiable (0.07 to 49 seconds) and 2 unsatisfiable (43 and 56 seconds, both at 300 variables). It did not finish the other 8, which are probably unsatisfiable. Details are in [results/TIER3-BASELINE.md](results/TIER3-BASELINE.md). So the test is concrete: checked proofs for those 8, or for the two solved unsatisfiable ones in well under a second, would be strong evidence.
 
+**The satisfiable ones are not the test.** Satisfiable random 3-SAT is a known exception: plain local search has long beaten clause-learning solvers on it. A 60-line textbook probSAT ([`shortcuts/probsat.c`](shortcuts/probsat.c)) solves all 15 satisfiable Tier 3 instances in milliseconds; see [results/TIER3-LOCALSEARCH.md](results/TIER3-LOCALSEARCH.md). So a fast time on those matches a known method. The unsatisfiable ones are where a new method would show.
+
 ## Reproduce our numbers
 
 You need Python 3, a C compiler for `python-sat`, and `kissat` on your path.
@@ -84,7 +86,9 @@ cd shortcuts && ../.venv/bin/python more.py 10
 cd shortcuts && ../.venv/bin/python tier3.py
 ```
 
-The first two write each instance to `shortcuts/cnf/` in DIMACS format as they run, and print one line per instance. The argument is the time limit in seconds. The third writes the Tier 3 instances. Checksums of all 72 files are in `results/`, so you can confirm you are solving the same problems.
+The first two write each instance to `shortcuts/cnf/` in DIMACS format as they run, and print one line per instance. The argument is the time limit in seconds. The third writes the Tier 3 instances.
+
+**You do not need to run anything to get the instances.** All 72 are in [`instances/`](instances): the 47 Tier 1 files in `instances/tier1/` and the 25 Tier 3 files in `instances/tier3/`, byte-identical to what the scripts write. Checksums are in `results/`, so you can confirm you are solving the same problems.
 
 ## What is in here
 
@@ -95,6 +99,8 @@ The first two write each instance to `shortcuts/cnf/` in DIMACS format as they r
 | `shortcuts/more.py` | circuits (adders, multipliers), chessboard, Hamiltonian cycle, mixed XOR, with their shortcuts and the harness |
 | `shortcuts/bench.py`, `run_cadical.py` | the first harness |
 | `shortcuts/tier3.py` | the Tier 3 instances |
+| `shortcuts/probsat.c` | a minimal local search, as a reference point for the satisfiable Tier 3 instances |
+| `instances/` | all 72 instance files in DIMACS format |
 | `shortcuts/chart.py` | draws the chart |
 | `results/` | our numbers, the chart, and checksums |
 

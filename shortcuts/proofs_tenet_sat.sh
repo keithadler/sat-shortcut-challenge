@@ -1,9 +1,10 @@
 #!/bin/zsh
 # Write a binary LRAT proof with CaDiCaL for every unsatisfiable instance it can finish, then check each
-# proof with tenet-sat (https://github.com/keithadler/tenet-sat) at 1 and 8 threads.
-# Usage: shortcuts/proofs_tenet_sat.sh PROOF_DIR TENETSAT_DLL
+# proof with tenet-sat (https://github.com/keithadler/tenet-sat) at 1 and 8 threads, and with lrat-trim
+# (https://github.com/arminbiere/lrat-trim) if its path is given.
+# Usage: shortcuts/proofs_tenet_sat.sh PROOF_DIR TENETSAT_DLL [LRAT_TRIM]
 # Needs cadical and the .NET 10 runtime (on Homebrew: export DOTNET_ROOT=/opt/homebrew/opt/dotnet/libexec).
-OUT=${1:?proof dir}; T=${2:?path to tenetsat.dll}; mkdir -p $OUT
+OUT=${1:?proof dir}; T=${2:?path to tenetsat.dll}; L=$3; mkdir -p $OUT
 R=${0:A:h}/../instances
 list=(
  tier1/tseitin_n20_unsat tier1/tseitin_n30_unsat tier1/tseitin_n40_unsat tier1/tseitin_n60_unsat
@@ -16,7 +17,7 @@ list=(
  tier1/ham_cutvertex_15 tier1/ham_cutvertex_23
  tier3/random3sat_n300_s1 tier3/random3sat_n300_s5
 )
-printf 'instance\tcadical_cpu_s\tproof_bytes\ttenet_sat_1_thread\twall_s\ttenet_sat_8_threads\twall_s\n'
+printf 'instance\tcadical_cpu_s\tproof_bytes\ttenet_sat_1_thread\twall_s\ttenet_sat_8_threads\twall_s\tlrat_trim\twall_s\n'
 for f in $list; do
   n=${f:t}
   s=$( { /usr/bin/time -p cadical -q -t 600 --lrat $R/$f.cnf $OUT/$n.lrat > $OUT/$n.out; } 2>&1 | awk '/^user/{print $2}')
@@ -25,5 +26,9 @@ for f in $list; do
     o=$( { /usr/bin/time -p dotnet $T check $R/$f.cnf $OUT/$n.lrat --threads $th; } 2>&1 )
     row="$row\t$(print -r -- "$o" | grep -E '^s ' | head -1)\t$(print -r -- "$o" | awk '/^real/{print $2}')"
   done
+  if [[ -n $L ]]; then
+    o=$( { /usr/bin/time -p $L $R/$f.cnf $OUT/$n.lrat; } 2>&1 )
+    row="$row\t$(print -r -- "$o" | grep -E '^s ' | head -1)\t$(print -r -- "$o" | awk '/^real/{print $2}')"
+  fi
   print -r -- "$row"
 done

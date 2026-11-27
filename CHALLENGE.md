@@ -4,7 +4,7 @@ Open to any solver, offered in a friendly spirit. The aim is to separate two thi
 
 ## Rules for every tier
 
-1. **Certificates.** For a satisfiable instance, give the satisfying assignment. For an unsatisfiable one, give a proof in DRAT or LRAT format that `drat-trim`, `cake_lpr`, `lrat-trim` or [`tenet-sat`](https://github.com/keithadler/tenet-sat) accepts. We check LRAT proofs with tenet-sat; on our own instances it checks a 315 MB proof in under 2 seconds (`results/PROOFS-TENET-SAT.md`). An answer without a certificate does not count.
+1. **Certificates.** For a satisfiable instance, give the satisfying assignment. For an unsatisfiable one, give a proof in DRAT or LRAT format that `drat-trim`, `cake_lpr`, `lrat-trim` or [`tenet-sat`](https://github.com/keithadler/tenet-sat) accepts. We check LRAT proofs with tenet-sat and lrat-trim. On our own instances both accept all 26 proofs and reject all 8 broken ones, and tenet-sat checks a 315 MB proof in under 2 seconds (`results/PROOFS-TENET-SAT.md`). An answer without a certificate does not count.
 2. **Same machine.** Run your solver and Kissat (a stated release, default options) on the same hardware, one core each, and report both.
 3. **Report everything.** Every instance in the tier, including timeouts and wrong answers. State the time limit.
 4. **Say what the solver was given.** The DIMACS file only, or also the original circuit or graph.

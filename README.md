@@ -83,7 +83,7 @@ That is a generous offer, and it is exactly what Tiers 3 and 4 ask for. So here 
 - **Tier 3:** the 25 instances written by `shortcuts/tier3.py`, with checksums in `results/MANIFEST-tier3.sha256`. A satisfying assignment for each satisfiable one, and a DRAT or LRAT proof for each unsatisfiable one, with the time taken.
 - **Tier 4:** the 24 instances in `instances/tier4/`, with checksums in `results/MANIFEST-tier4.sha256`. A satisfying assignment for each, with the time taken.
 
-We will check every certificate and publish the result here.
+We will check every certificate and publish the result here. Proofs are checked with [tenet-sat](https://github.com/keithadler/tenet-sat), a parallel LRAT checker: the two Tier 3 proofs CaDiCaL wrote (about 40 s each to produce) check in under a second each, and all 26 proofs for our unsatisfiable instances verify ([results/PROOFS-TENET-SAT.md](results/PROOFS-TENET-SAT.md)). drat-trim, lrat-trim and cake_lpr are accepted too.
 
 **Tier 3 baseline.** Kissat 4.0.4 with a 300-second limit solved 17 of the 25: 15 satisfiable (0.07 to 49 seconds) and 2 unsatisfiable (43 and 56 seconds, both at 300 variables). It did not finish the other 8, which are probably unsatisfiable. Details are in [results/TIER3-BASELINE.md](results/TIER3-BASELINE.md). So the test is concrete: checked proofs for those 8, or for the two solved unsatisfiable ones in well under a second, would be strong evidence.
 
@@ -132,6 +132,7 @@ The first two write each instance to `shortcuts/cnf/` in DIMACS format as they r
 | `shortcuts/sha256cnf.py`, `tier4.py` | reduced-round SHA-256 as CNF with a planted preimage; the Tier 4 instances |
 | `shortcuts/tier4_check.py`, `tier4_baseline.py` | checks a Tier 4 answer by hashing it; the Kissat baseline |
 | `shortcuts/nonce_bruteforce.c` | the plain enumeration loop for the SHA-256 nonce benchmark |
+| `shortcuts/proofs_tenet_sat.sh` | writes LRAT proofs with CaDiCaL for the unsatisfiable instances and checks them with tenet-sat |
 | `instances/` | all 96 instance files in DIMACS format |
 | `shortcuts/chart.py` | draws the chart |
 | `results/` | our numbers, the chart, and checksums |
@@ -149,6 +150,6 @@ The first two write each instance to `shortcuts/cnf/` in DIMACS format as they r
 
 ## Credits
 
-Keith Adler, working with Claude (Anthropic). CaDiCaL and Kissat are by Armin Biere and collaborators; `python-sat` is by Alexey Ignatiev and collaborators.
+Keith Adler, working with Claude (Anthropic). tenet-sat is by Keith Adler. CaDiCaL and Kissat are by Armin Biere and collaborators; `python-sat` is by Alexey Ignatiev and collaborators.
 
 License: Apache-2.0.

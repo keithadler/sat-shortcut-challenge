@@ -1,0 +1,24 @@
+sha256_r17_free512_s1	SAT (hash verified)	0.38
+sha256_r17_free512_s2	SAT (hash verified)	0.35
+sha256_r17_free512_s3	SAT (hash verified)	0.38
+sha256_r18_free512_s1	SAT (hash verified)	6.72
+sha256_r18_free512_s2	SAT (hash verified)	201.39
+sha256_r18_free512_s3	SAT (hash verified)	83.36
+sha256_r19_free512_s1	not solved in 300 s	265.68
+sha256_r19_free512_s2	not solved in 300 s	266.12
+sha256_r19_free512_s3	not solved in 300 s	258.64
+sha256_r20_free512_s1	not solved in 300 s	261.13
+sha256_r20_free512_s2	not solved in 300 s	255.41
+sha256_r20_free512_s3	not solved in 300 s	255.23
+sha256_r13_free64_s1	SAT (hash verified)	0.09
+sha256_r13_free64_s2	SAT (hash verified)	0.11
+sha256_r13_free64_s3	SAT (hash verified)	0.09
+sha256_r14_free64_s1	SAT (hash verified)	0.15
+sha256_r14_free64_s2	SAT (hash verified)	0.11
+sha256_r14_free64_s3	SAT (hash verified)	0.14
+sha256_r15_free64_s1	SAT (hash verified)	0.87
+sha256_r15_free64_s2	SAT (hash verified)	0.12
+sha256_r15_free64_s3	SAT (hash verified)	1.10
+sha256_r16_free64_s1	SAT (hash verified)	1.09
+sha256_r16_free64_s2	SAT (hash verified)	1.20
+sha256_r16_free64_s3	SAT (hash verified)	0.52

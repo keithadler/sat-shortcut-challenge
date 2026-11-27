@@ -52,6 +52,7 @@ The post makes several claims. This repository tests one of them. For fairness, 
 | The gap grows as problems get larger | Yes | We see the same with known shortcuts on structured families: the shortcut is polynomial and the general solver is not. So this is expected whether or not the method is new. |
 | It solves "a large subset of the NP-complete problem space in polynomial time" | Partly | True of every shortcut used here, each for its own family. The open question is how large the subset is. |
 | Speedups from 3.7x on Hamiltonian-cycle problems from six published families | Yes | The most checkable claim, and a believable size. Families chosen by other people are a fairer test than a home-made table. Our own graph method won on unsolvable cases and lost on one solvable case, so we have little to add here. We read only the opening of that post. |
+| 38,000x to 2,170,000x faster on SHA-256 nonce preimages "in the exponential limit" | Yes, instances are public | Frobenius solves the benchmark by brute force (about 30M SHA-256 evaluations per second). A 150-line brute-force loop does the 32-bit case in 47 s against its reported 87 s. The ratios compare hashing speed with CDCL, extrapolated past k ≈ 17. See [results/SHA256-NONCE.md](results/SHA256-NONCE.md). |
 | Built in under five minutes and about twenty prompts | No | Only the author can know. It is consistent with combining existing methods. |
 
 We have left out the post's remarks comparing AI models. They are one person's experience on one task and nothing here can test them.
